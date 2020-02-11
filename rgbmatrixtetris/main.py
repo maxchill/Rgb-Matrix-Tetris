@@ -1,5 +1,5 @@
 from __future__ import print_function
-from lib.game import Game
+from rgbmatrixtetris.lib.game import Game
 import atexit
 import config
 
@@ -34,3 +34,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+    sys.exit(0)

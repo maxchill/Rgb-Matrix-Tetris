@@ -8,7 +8,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='rgb-matrix-tetris',
+    name='rgbmatrixtetris',
 
     version='1.0.0',
 
@@ -43,7 +43,7 @@ setup(
 
     packages=find_packages(exclude=['contrib', 'docs', 'test']),
 
-    install_requires=['pygame', 'RPi.GPIO', 'rgbmatrix', 'tinydb', 'mock'],
+    install_requires=['pygame', 'RPi.GPIO',  'tinydb', 'mock'],
 
     extras_require={
         'dev': ['check-manifest'],
@@ -55,6 +55,8 @@ setup(
     data_files=[],
 
     entry_points={
-        'console_scripts': []
+        'console_scripts': [
+            'rgb-tetris=rgbmatrixtetris.main:main'
+            ]
     },
 )

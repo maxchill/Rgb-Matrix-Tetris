@@ -17,11 +17,11 @@ class Board:
 
     def __generate(self):
         self.COORDINATES = [
-            [0 for x in xrange(self.COLUMNS)]
-            for y in xrange(self.ROWS)
+            [0 for x in range(self.COLUMNS)]
+            for y in range(self.ROWS)
         ]
         self.COORDINATES += [
-            [1 for x in xrange(self.COLUMNS)]
+            [1 for x in range(self.COLUMNS)]
         ]
 
     def columns(self):
@@ -68,7 +68,7 @@ class Board:
 
         del self.COORDINATES[row]
 
-        self.COORDINATES = [[0 for i in xrange(self.COLUMNS)]] + self.COORDINATES
+        self.COORDINATES = [[0 for i in range(self.COLUMNS)]] + self.COORDINATES
 
     def clear(self):
         print("[Board][info] Clearing board")

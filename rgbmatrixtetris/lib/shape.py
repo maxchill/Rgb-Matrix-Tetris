@@ -85,9 +85,9 @@ class Shape:
         return [
             [
                 self.COORDINATES[y][x]
-                for y in xrange(len(self.COORDINATES) - 1, -1, -1)
+                for y in range(len(self.COORDINATES) - 1, -1, -1)
             ]
-            for x in xrange(len(self.COORDINATES[0]))
+            for x in range(len(self.COORDINATES[0]))
         ]
 
     def rotate_anti_clockwise(self):
@@ -96,9 +96,9 @@ class Shape:
         return [
             [
                 self.COORDINATES[y][x]
-                for y in xrange(len(self.COORDINATES))
+                for y in range(len(self.COORDINATES))
             ]
-            for x in xrange(len(self.COORDINATES[0]) - 1, -1, -1)
+            for x in range(len(self.COORDINATES[0]) - 1, -1, -1)
         ]
 
     def clear(self):

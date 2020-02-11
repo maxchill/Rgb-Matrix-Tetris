@@ -1,13 +1,13 @@
 from __future__ import print_function
-from board import Board
+from rgbmatrixtetris.lib.board import Board
 from mock import MagicMock, patch
-from shape import Shape
+from rgbmatrixtetris.lib.shape import Shape
 from random import randrange as rand
 from tinydb import TinyDB, Query
 import datetime
 import pygame
 import sys
-
+import os
 
 try:
     from rgbmatrix import RGBMatrix as RgbMatrix
@@ -219,18 +219,21 @@ class Game:
             self.HEIGHT = self.BLOCK_SIZE * (self.ROWS + 24)
 
             self.BACKGROUND_GRID = [
-                [8 if x % 2 == y % 2 else 0 for x in xrange(self.COLUMNS)]
-                for y in xrange(self.ROWS)
+                [8 if x % 2 == y % 2 else 0 for x in range(self.COLUMNS)]
+                for y in range(self.ROWS)
             ]
             self.BACKGROUND_BOX = [
-                [9 if (x == 0 or x == self.COLUMNS + 1 or y == 0 or y == self.ROWS + 1) else 0 for x in xrange(self.COLUMNS + 2)]
-                for y in xrange(self.ROWS + 2)
+                [9 if (x == 0 or x == self.COLUMNS + 1 or y == 0 or y == self.ROWS + 1) else 0 for x in range(self.COLUMNS + 2)]
+                for y in range(self.ROWS + 2)
             ]
 
+            os.putenv('SDL_VIDEODRIVER', 'fbcon') 
             self.pygame.init()
+
+            self.pygame_screen = self.pygame.display.set_mode((self.WIDTH, self.HEIGHT), 0, 24)
             self.pygame.key.set_repeat(150, 50)
             self.pygame_font = self.pygame.font.Font(self.pygame.font.get_default_font(), 12)
-            self.pygame_screen = self.pygame.display.set_mode((self.WIDTH, self.HEIGHT), 0, 24)
+
             self.pygame.display.set_caption('RGB Matrix Tetris')
             self.pygame.event.set_blocked(self.pygame.MOUSEMOTION)
             self.pygame.mouse.set_visible(0)
@@ -266,6 +269,7 @@ class Game:
                                 self.quit()
                         elif event.type == self.pygame.QUIT:
                             self.quit()
+
                 except KeyboardInterrupt:
                     self.quit()
         except AttributeError:
@@ -373,7 +377,7 @@ class Game:
     def __generate_shapes(self):
         print("[Game][info] Generating next shapes")
 
-        self.shapes_next = [Shape(self.SHAPES[rand(len(self.SHAPES))]) for x in xrange(self.SHAPES_NEXT_COUNT)]
+        self.shapes_next = [Shape(self.SHAPES[rand(len(self.SHAPES))]) for x in range(self.SHAPES_NEXT_COUNT)]
         self.__next_shape()
 
     def __next_shape(self):
